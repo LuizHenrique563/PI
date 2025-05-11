@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    int tipo_usuario;
+    char cpf_crm[50];
+    char nome[100];
+    char email[100];
+    char senha[50];
+
+    printf("======= Prontuário-Pro - Cadastro =======\n");
+    printf("Selecione o tipo de usuário:\n");
+    printf("1. Médico\n");
+    printf("2. Paciente\n");
+
+    printf("Digite a opção (1 ou 2): ");
+    scanf("%d", &tipo_usuario);
+    getchar(); // Limpar o buffer
+
+    if (tipo_usuario != 1 && tipo_usuario != 2) {
+        printf("Opção inválida. Encerrando cadastro.\n");
+        return 1;
+    }
+
+    printf("Digite seu CPF (ou CRM se for médico): ");
+    fgets(cpf_crm, sizeof(cpf_crm), stdin);
+    cpf_crm[strcspn(cpf_crm, "\n")] = '\0';
+
+    printf("Digite seu nome completo: ");
+    fgets(nome, sizeof(nome), stdin);
+    nome[strcspn(nome, "\n")] = '\0';
+
+    printf("Digite seu e-mail: ");
+    fgets(email, sizeof(email), stdin);
+    email[strcspn(email, "\n")] = '\0';
+
+    printf("Digite sua senha: ");
+    fgets(senha, sizeof(senha), stdin);
+    senha[strcspn(senha, "\n")] = '\0';
+
+    // Simula cadastro bem-sucedido
+    printf("\nCadastro realizado com sucesso!\n");
+    printf("Usuário: %s\n", tipo_usuario == 1 ? "Médico" : "Paciente");
+    printf("Nome: %s\n", nome);
+    printf("E-mail: %s\n", email);
+
+    return 0;
+}
