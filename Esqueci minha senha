@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h> // Para sleep()
+
+int main() {
+    char email[100];
+    char opcao;
+
+    printf("===== Alterar Senha =====\n");
+    printf("Digite seu e-mail: ");
+    fgets(email, sizeof(email), stdin);
+    email[strcspn(email, "\n")] = '\0'; // Remove '\n'
+
+    // Simula envio de e-mail
+    printf("\nEnviando e-mail de verificação...\n");
+    sleep(2); // Espera 2 segundos como simulação
+
+    // Confirmação
+    printf("E-mail enviado com sucesso para: %s\n", email);
+    printf("\nPressione qualquer tecla seguida de ENTER para voltar ao menu...\n");
+    scanf(" %c", &opcao);
+
+    return 0;
+}
