@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char requisito[10];  // Variável para armazenar o código do requisito
+
+    // Coletando o código do requisito
+    printf("Insira o código do requisito (ex: RF002, RNF-001): ");
+    scanf("%s", requisito);
+
+    // Verificando a prioridade do requisito
+    if (strcmp(requisito, "RF002") == 0 || 
+        strcmp(requisito, "RF003") == 0 || 
+        strcmp(requisito, "RF004") == 0 || 
+        strcmp(requisito, "RF005") == 0 || 
+        strcmp(requisito, "RNF-001") == 0 || 
+        strcmp(requisito, "RNF002") == 0) {
+        
+        printf("O requisito %s é de ALTA prioridade.\n", requisito);
+    
+    } else if (strcmp(requisito, "RF001") == 0 || 
+               strcmp(requisito, "RF006") == 0 || 
+               strcmp(requisito, "RF007") == 0) {
+        
+        printf("O requisito %s é de MÉDIA prioridade.\n", requisito);
+    
+    } else if (strcmp(requisito, "RF008") == 0 || 
+               strcmp(requisito, "RNF003") == 0) {
+        
+        printf("O requisito %s é de BAIXA prioridade.\n", requisito);
+    
+    } else {
+        printf("Requisito %s não encontrado na lista.\n", requisito);
+    }
+
+    return 0;
+}
