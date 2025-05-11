@@ -1,0 +1,86 @@
+#include <stdio.h>
+#include <ctype.h>  // Para a função isdigit()
+
+// Função para validar se a entrada é um número dentro do intervalo permitido
+int valida_inteiro(int min, int max) {
+    int num;
+    char ch;
+    
+    while (1) {
+        if (scanf("%d%c", &num, &ch) != 2 || ch != '\n' || num < min || num > max) {
+            // Descartando a entrada inválida
+            while ((ch = getchar()) != '\n' && ch != EOF); 
+            printf("Entrada inválida! Por favor, insira um número entre %d e %d.\n", min, max);
+        } else {
+            return num;
+        }
+    }
+}
+
+int main() {
+    const int TOTAL_SECOES = 5;  // Define o número total de seções
+    int progresso[TOTAL_SECOES] = {0};  // Inicializa as seções com 0% de progresso
+    int secoes_concluidas = 0;  // Contador de seções concluídas
+    int escolha;
+
+    // Nomes das seções
+    const char* secoes[TOTAL_SECOES] = {
+        "Prioridade dos Requisitos (MoSCoW)",
+        "Análise de Negócio (Regras de Negócio)",
+        "Requisitos",
+        "Design e Protótipo",
+        "Validação e Testes"
+    };
+
+    // Cabeçalho
+    printf("Simulação do Progresso do Desenvolvimento do Software\n");
+    printf("========================================\n");
+    printf("Vamos acompanhar o progresso das principais seções do desenvolvimento do Software!\n");
+
+    // Loop principal, enquanto não todas as seções estiverem concluídas
+    while (secoes_concluidas < TOTAL_SECOES) {
+        printf("\nStatus atual do desenvolvimento:\n");
+
+        // Exibe o progresso de todas as seções
+        for (int i = 0; i < TOTAL_SECOES; i++) {
+            printf("%d. %s - %d%% concluída\n", i + 1, secoes[i], progresso[i]);
+        }
+
+        printf("\nEscolha uma seção para atualizar o progresso (1 a %d): ", TOTAL_SECOES);
+        escolha = valida_inteiro(1, TOTAL_SECOES);  // Validando a escolha do usuário
+
+        int secao = escolha - 1;  // Converte a escolha para índice de array
+
+        // Verifica se a seção já foi concluída
+        if (progresso[secao] == 100) {
+            printf("A seção %s já foi concluída!\n", secoes[secao]);
+            continue;
+        }
+
+        // Solicita o progresso para a seção escolhida
+        printf("Digite o progresso atual para %s (0 a 100): ", secoes[secao]);
+        int novo_progresso = valida_inteiro(0, 100);  // Validando o progresso
+
+        // Atualiza o progresso
+        progresso[secao] = novo_progresso;
+
+        // Se a seção foi concluída, incrementa o contador de seções concluídas
+        if (progresso[secao] == 100) {
+            printf("Parabéns! A seção %s foi concluída!\n", secoes[secao]);
+            secoes_concluidas++;
+        } else {
+            printf("Progresso de %s atualizado para %d%%.\n", secoes[secao], progresso[secao]);
+        }
+    }
+
+    // Mensagem de finalização
+    printf("\nTodas as seções do desenvolvimento foram concluídas com sucesso! Parabéns pelo progresso finalizado!\n");
+
+    // Exibição de relatório final
+    printf("\nRelatório final de progresso:\n");
+    for (int i = 0; i < TOTAL_SECOES; i++) {
+        printf("%s: %d%% concluído\n", secoes[i], progresso[i]);
+    }
+
+    return 0;
+}
