@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char nome[100];
+    char cpf[20];
+    char data_nasc[15];
+    char contato[20];
+    char queixa[200];
+    char cid[20];
+    char historico[200];
+    int diabetes = 0, hipertensao = 0, depressao = 0;
+    char resposta;
+
+    printf("===== Cadastro de Prontuário do Paciente =====\n");
+
+    printf("Nome completo: ");
+    fgets(nome, sizeof(nome), stdin);
+    nome[strcspn(nome, "\n")] = '\0';
+
+    printf("CPF: ");
+    fgets(cpf, sizeof(cpf), stdin);
+    cpf[strcspn(cpf, "\n")] = '\0';
+
+    printf("Data de nascimento (dd/mm/aaaa): ");
+    fgets(data_nasc, sizeof(data_nasc), stdin);
+    data_nasc[strcspn(data_nasc, "\n")] = '\0';
+
+    printf("Contato (telefone): ");
+    fgets(contato, sizeof(contato), stdin);
+    contato[strcspn(contato, "\n")] = '\0';
+
+    printf("Queixa principal: ");
+    fgets(queixa, sizeof(queixa), stdin);
+    queixa[strcspn(queixa, "\n")] = '\0';
+
+    printf("CID (código da doença): ");
+    fgets(cid, sizeof(cid), stdin);
+    cid[strcspn(cid, "\n")] = '\0';
+
+    printf("Histórico familiar: ");
+    fgets(historico, sizeof(historico), stdin);
+    historico[strcspn(historico, "\n")] = '\0';
+
+    // Seleção de patologias
+    printf("O paciente tem alguma dessas patologias?\n");
+
+    printf("Diabetes (s/n): ");
+    scanf(" %c", &resposta);
+    if (resposta == 's' || resposta == 'S') diabetes = 1;
+
+    printf("Hipertensão (s/n): ");
+    scanf(" %c", &resposta);
+    if (resposta == 's' || resposta == 'S') hipertensao = 1;
+
+    printf("Depressão (s/n): ");
+    scanf(" %c", &resposta);
+    if (resposta == 's' || resposta == 'S') depressao = 1;
+
+    // Mostra resumo
+    printf("\n===== Dados do Paciente Cadastrados =====\n");
+    printf("Nome: %s\n", nome);
+    printf("CPF: %s\n", cpf);
+    printf("Nascimento: %s\n", data_nasc);
+    printf("Contato: %s\n", contato);
+    printf("Queixa: %s\n", queixa);
+    printf("CID: %s\n", cid);
+    printf("Histórico Familiar: %s\n", historico);
+    printf("Patologias: %s %s %s\n",
+           diabetes ? "Diabetes" : "",
+           hipertensao ? "Hipertensão" : "",
+           depressao ? "Depressão" : "");
+
+    printf("\nProntuário salvo com sucesso!\n");
+
+    return 0;
+}
